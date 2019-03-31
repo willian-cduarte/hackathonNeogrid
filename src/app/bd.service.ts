@@ -33,6 +33,29 @@ export class BdService {
 
     }
 
+    public consultaTicketsSuporte(): Promise<Ticket[]>{
+       
+            return new Promise((resolve, reject) => {
+
+                firebase.database().ref(`ticket`)
+                    .once('value')
+                    .then((snapshot: any) => {
+    
+                        const ticketsList: Array<Ticket> = [];
+    
+                        snapshot.forEach((childSnapshot: any) => {
+                            let ticket: Ticket = childSnapshot.val();
+    
+                            ticket.key = childSnapshot.key;
+    
+                            ticketsList.push(ticket);
+                        });
+                        resolve(ticketsList);
+                    });
+            });
+    }
+
+     
     public consultaTickets(email: string): Promise<Ticket[]> {
 
         console.log('consultaTickets', email);
