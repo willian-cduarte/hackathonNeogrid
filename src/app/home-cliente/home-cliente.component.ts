@@ -9,33 +9,31 @@ import { BdService } from './../bd.service';
   styleUrls: ['./home-cliente.component.css']
 })
 export class HomeClienteComponent implements OnInit {
-  
-  // public itens: String[] = []; 
-  public ticketsCliente: Ticket[] = [];
 
-  constructor(private dbService: BdService) {
-    
-    /*this.itens.push('a');
-    this.itens.push('b');
-    this.itens.push('c');
-    this.itens.push('d');    */
-   }
+  // public itens: String[] = [];
+  // public tickets: number = 0;
+  public itensTicket: Ticket[] = [];
+
+  constructor(private dbService: BdService) { }
 
    ngOnInit() {
-    
-    // Inser exemplo
-    // this.dbService.inserirTicket(new Ticket (1, '', '' , ''));
+
+    // Insert exemplo
+    // this.dbService.inserirTicket(new Ticket (1, '', '' , '', ''));
 
     this.dbService.consultaTickets('app@teste.com')
       .then((resposta: Ticket[]) => {
 
-        this.ticketsCliente = resposta;
+        // alert('apos db consulta');
 
-        console.log('ticketsCliente', this.ticketsCliente);
+        this.itensTicket = resposta;
+
+        // this.tickets = 111;
+
+        console.log('ticketsCliente', this.itensTicket);
+        console.log('Resposta', resposta);
+        // alert(this.itensTicket);
 
       });
    }
-
-    
-
 }

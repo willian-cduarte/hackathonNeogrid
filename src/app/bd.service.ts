@@ -14,7 +14,7 @@ export class BdService {
 
     public inserirTicket (ticket: Ticket): void {
 
-        let ticketInsertTeste: Ticket = new Ticket(1, 'Falha integração SEFAZ','Em Atendimento', '01/04/2019', '');
+        let ticketInsertTeste: Ticket = new Ticket(3, 'Usuário sem acesso','Finalizado', '20/03/2019', '');
 
         // ALTERAR NÃO ESQUECER
         firebase.database().ref(`ticket/${btoa('app@teste.com')}`)
@@ -29,23 +29,32 @@ export class BdService {
 
         // ALTERAR NÃO ESQUECER
 
+        let ticketArray: Ticket[] = [];
+
         return new Promise((resolve, reject) => {
-            
+
             firebase.database().ref(`ticket/${btoa('app@teste.com')}`)
                 .once('value')
                 .then((snapshot: any) => {
 
-                    const tickets: Array<Ticket> = [];
+                    const ticketsList: Array<Ticket> = [];
                     // console.log('snapshot', snapshot.val());
 
                     snapshot.forEach((childSnapshot: any) => {
-                        const ticket: Ticket = childSnapshot.val();
+                        let ticket: Ticket = childSnapshot.val();
+
+                        console.log('ticket_key', childSnapshot.key);
+
                         ticket.key = childSnapshot.key;
 
-                        tickets.push(ticket);
-                    }); 
-                    
-                    resolve(tickets);
+                        ticketsList.push(ticket);
+                    });
+
+                    ticketsList.forEach((ticket: any) => {
+                        console.log('ticketTT', ticket.ticketInsertTeste);
+                        ticketArray.push(ticket.ticketInsertTeste);
+                    })
+                    resolve(ticketArray);
                 });
         });
 

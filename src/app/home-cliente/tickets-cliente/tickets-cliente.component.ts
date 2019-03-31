@@ -9,13 +9,16 @@ import { Ticket } from '../../util/ticket.model';
 })
 export class TicketsClienteComponent implements OnInit {
 
-  @Input('tickets') public ticketsLista: Ticket[];
+  @Input('itensTicket') public itensTicket: string;
+  // @Input('idPedidoCompra') public idPedidoCompra: number;
+
 
   constructor() { }
 
   ngOnInit() {
 
-    console.log('TicketCliente aa', this.ticketsLista);
+    console.log('TicketCliente PPPPPP', this.itensTicket);
+    // alert(this.itensTicket);
   }
 
 }
