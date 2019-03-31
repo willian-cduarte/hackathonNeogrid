@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { Usuario } from '../usuario.model';
+import { UsuarioLogin } from '../UsuarioLogin.model';
 
 import { AutenticacaoService } from '../../autenticacao.service';
 
@@ -36,16 +36,16 @@ export class CadastroComponent implements OnInit {
 
   public cadastrarUsuario(): void {
 
-    const usuario: Usuario = new Usuario(
+    const usuarioLogin: UsuarioLogin = new UsuarioLogin(
       this.formulario.value.email,
       this.formulario.value.nome_completo,
       this.formulario.value.nome_usuario,
       this.formulario.value.senha
     );
 
-    console.log(usuario);
+    console.log(UsuarioLogin);
 
-    this.autenticacaoService.cadastrarUsuario(usuario)
+    this.autenticacaoService.cadastrarUsuario(usuarioLogin)
       .then(() => { this.exibirPainelLogin(); });
   }
 
