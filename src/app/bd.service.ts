@@ -12,8 +12,6 @@ export class BdService {
 
     constructor(private progressoService: ProgressoService) {}
 
-  
-
     public inserirTicket (ticket: Ticket): void {
 
         let ticketInsertTeste: Ticket = new Ticket(1, 'Falha integração SEFAZ','Em Atendimento', '01/04/2019', '');
@@ -27,11 +25,10 @@ export class BdService {
             });
     }
 
-
-  
     public consultaTickets(email: string): Promise<Ticket[]> {
 
         // ALTERAR NÃO ESQUECER
+
         return new Promise((resolve, reject) => {
             
             firebase.database().ref(`ticket/${btoa('app@teste.com')}`)
@@ -39,7 +36,7 @@ export class BdService {
                 .then((snapshot: any) => {
 
                     const tickets: Array<Ticket> = [];
-                     console.log('snapshot', snapshot.val())
+                    // console.log('snapshot', snapshot.val());
 
                     snapshot.forEach((childSnapshot: any) => {
                         const ticket: Ticket = childSnapshot.val();
