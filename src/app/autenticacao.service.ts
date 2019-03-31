@@ -50,7 +50,7 @@ export class AutenticacaoService {
                         .then((snapshot: any) => {
                             console.log(snapshot)
                             console.log(snapshot.usuario_detalhe)
-                            this.cliente = snapshot.usuario_detalhe;
+                            this.usuario = snapshot.usuario_detalhe;
                         });
 
                         // Realiza a navegação ara a route 'home'
