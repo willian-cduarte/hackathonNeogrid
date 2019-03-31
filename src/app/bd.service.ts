@@ -34,6 +34,8 @@ export class BdService {
     }
 
     public consultaTicketsSuporte(): Promise<Ticket[]>{
+
+            let ticketArray: Ticket[] = [];
        
             return new Promise((resolve, reject) => {
 
@@ -47,10 +49,18 @@ export class BdService {
                             let ticket: Ticket = childSnapshot.val();
     
                             ticket.key = childSnapshot.key;
-    
+                           
                             ticketsList.push(ticket);
                         });
-                        resolve(ticketsList);
+                        console.log(ticketsList)
+
+                        ticketsList.forEach((ticket: any) => {
+                            console.log('ddd', ticket)
+
+                            ticketArray.push(ticket.ticketInsertTeste);
+                        })
+                        console.log(ticketArray)
+                        resolve(ticketArray);
                     });
             });
     }
