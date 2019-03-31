@@ -12,12 +12,15 @@ export class BdService {
 
     constructor(private progressoService: ProgressoService) {}
 
-    public inserirTicket (ticket: Ticket): void {
+    public inserirTicket(ticket: Ticket, email: string): void {
 
-        let ticketInsertTeste: Ticket = new Ticket(3, 'Usuário sem acesso','Finalizado', '20/03/2019', '');
+        // Altenção inserido manual.
+        let ticketInsertTeste: Ticket = new Ticket(4, 'Mercadoria não rastreada', 'Aberto', '01/04/2019', '');
+
+        console.log('inserirTicket: ', email);
 
         // ALTERAR NÃO ESQUECER
-        firebase.database().ref(`ticket/${btoa('app@teste.com')}`)
+        firebase.database().ref(`ticket/${btoa(email)}`)
             .push( { ticketInsertTeste } )
             .then((resposta: any) => {
                 console.log('insert database');
@@ -27,23 +30,20 @@ export class BdService {
 
     public consultaTickets(email: string): Promise<Ticket[]> {
 
-        // ALTERAR NÃO ESQUECER
+        console.log('consultaTickets', email);
 
         let ticketArray: Ticket[] = [];
 
         return new Promise((resolve, reject) => {
 
-            firebase.database().ref(`ticket/${btoa('app@teste.com')}`)
+            firebase.database().ref(`ticket/${btoa(email)}`)
                 .once('value')
                 .then((snapshot: any) => {
 
                     const ticketsList: Array<Ticket> = [];
-                    // console.log('snapshot', snapshot.val());
 
                     snapshot.forEach((childSnapshot: any) => {
                         let ticket: Ticket = childSnapshot.val();
-
-                        console.log('ticket_key', childSnapshot.key);
 
                         ticket.key = childSnapshot.key;
 
@@ -51,14 +51,11 @@ export class BdService {
                     });
 
                     ticketsList.forEach((ticket: any) => {
-                        console.log('ticketTT', ticket.ticketInsertTeste);
                         ticketArray.push(ticket.ticketInsertTeste);
                     })
                     resolve(ticketArray);
                 });
         });
-
-        
     }
 
     // Excluir publicar

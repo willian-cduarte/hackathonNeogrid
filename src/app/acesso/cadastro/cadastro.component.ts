@@ -18,8 +18,8 @@ export class CadastroComponent implements OnInit {
   // Inserir aqui no FormControl os Validators desejados para cada input do ReactiveForm
   public formulario: FormGroup = new FormGroup({
     email: new FormControl(null, [ Validators.required, Validators.email ]),
-    nomeCompleto: new FormControl(null, [ Validators.required, Validators.minLength(6), Validators.maxLength(120) ]),
-    nomeUsuario: new FormControl(null, [ Validators.required, Validators.minLength(6), Validators.maxLength(30) ]),
+    nome_completo: new FormControl(null, [ Validators.required, Validators.minLength(6), Validators.maxLength(120) ]),
+    nome_usuario: new FormControl(null, [ Validators.required, Validators.minLength(6), Validators.maxLength(30) ]),
     senha: new FormControl(null, [ Validators.required, Validators.minLength(6) ])
   });
 
@@ -38,8 +38,8 @@ export class CadastroComponent implements OnInit {
 
     const usuarioLogin: UsuarioLogin = new UsuarioLogin(
       this.formulario.value.email,
-      this.formulario.value.nomeCompleto,
-      this.formulario.value.nomeUsuario,
+      this.formulario.value.nome_completo,
+      this.formulario.value.nome_usuario,
       this.formulario.value.senha
     );
 
