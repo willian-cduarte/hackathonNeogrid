@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
+<<<<<<< HEAD
 import { Usuario } from './acesso/usuario.model';
 import { Cliente } from './util/cliente.model';
+=======
+import { UsuarioLogin } from './acesso/usuarioLogin.model';
+>>>>>>> f43c488ff14a7abaea2425eefdefc9664a440e1a
 
 import * as firebase from 'firebase';
 
@@ -13,7 +17,7 @@ export class AutenticacaoService {
     public usuario: Cliente;
     constructor(private router: Router) {}
 
-    public cadastrarUsuario(usuario: Usuario): Promise<any> {
+    public cadastrarUsuario(usuario: UsuarioLogin): Promise<any> {
 
         // console.log('Chegamos até o serviço', usuario);
 
@@ -55,7 +59,7 @@ export class AutenticacaoService {
                         });
 
                         // Realiza a navegação ara a route 'home'
-                        this.router.navigate(['/homeCliente']);                       
+                        this.router.navigate(['/homeCliente']);
                     });
             })
             .catch((error: Error) => {
