@@ -10,67 +10,37 @@
 
 
 <br /><br /><br />
-<div class="container">
-  <!--<app-publicacoes #publicacoes></app-publicacoes>-->
-  <!--<div *ngIf="itensTicket !== undefined">
-    {{ itensTicket }}
-    <app-tickets-cliente [itensTicket]=itensTicket></app-tickets-cliente>
-  </div>
-  --> 
-  
-
+<div class="container">  
+    <button type="button" class="btn btn-primary">Novo Chamado</button>
   <div *ngIf="itensTicket !== undefined">
-       
-          <table class="table justify-content-center">
-              <thead>
-                <tr>         
-                  <th>Assunto</th>
-                  <th>Status</th>
-                  <th>Vencimento</th>
-                </tr>
-              </thead>         
-            </table>
-
+      <div class="row">  
+          <div class="col-sm-12 d-flex justify-content-center">                  
+              <div class="col-sm-4">                   
+                  <h5 class="modal-title">Assunto</h5>
+              </div>
+              <div class="col-sm-4">                   
+                  <h5 class="modal-title"> Status </h5>
+              </div>
+              <div class="col-sm-2">                   
+                  <h5 class="modal-title"> Vencimento </h5>
+              </div>
+          </div>           
+        </div>
               <div class="row" *ngFor="let publicacao of itensTicket">
-                 <div class="col d-flex justify-content-center">  
-                  <!-- <tr>  -->
-                    <!-- <td>                 -->
+                 <div class="col-sm-12 d-flex justify-content-center">                  
                       <div class="col-sm-4">                   
                             {{publicacao.assunto}}
-                      </div> 
-                    <!-- </td>                 -->
-                    <!-- <td> -->
+                      </div>
+                   
                       <div class="col-sm-4">
                             {{publicacao.status}}
-                      </div>
-                    <!-- </td> -->
-                    <!-- <td> -->
+                      </div>                  
                       <div class="col-sm-2">
                             {{publicacao.dateSla}}
-                      </div>
-                    <!-- </td> -->
-                  <!-- </tr> -->
+                      </div>                 
                   </div>
-              </div>   
+              </div> 
               
-           
-          
   </div>  
 </div>
 
- <!--<div class="card">
-            <div class="card-body">
-              <p class="card-text"><strong>{{ publicacao.assunto }}</strong></p>
-            </div>
-          </div>
-          -->
-        <!-- </div> -->
-   <!--
-    {{ itensTicket | json }}
-    
-    <p *ngFor="let item of itensTicket">{{ itensTicket.assunto }}</p>
-    -->
-
-  <!--Modal de inclusão deve ficar como último elemento e só será apresentado quando data-toggle for disparado na div 'add-post'-->
-  <!--<app-incluir-publicacao (atualizarTimeLine)="atualizarTimeLine($event)" ></app-incluir-publicacao>-->
-<!-- </div> -->
