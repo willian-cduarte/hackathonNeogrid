@@ -45,25 +45,34 @@ export class AutenticacaoService {
                         this.tokenId = IdToken;
                         // Navegador
                         localStorage.setItem('idTokenInstagram', IdToken);
-                        firebase.database().ref(`usuario-detalhe/${btoa(email)}`)
+                        firebase.database().ref(`usuario_detalhe/${btoa(email)}`)
                         .once('value')
                         .then((snapshot: any) => {
                             console.log(snapshot)
                             console.log(snapshot.usuario_detalhe)
-                            this.usuario = snapshot.usuario_detalhe;
-                        });
+                            // this.usuario = snapshot.usuario_detalhe;
 
-                        // Realiza a navegação ara a route 'home'
-                        this.router.navigate(['/homeCliente']);
+                            let usuario = snapshot.val();
+
+                            console.log('usuario', usuario);
+
+                            if(usuario.cliente === true) {
+                                this.router.navigate(['/homeCliente']);
+                                console.log('homeCliente')
+
+                            } else {
+                                this.router.navigate(['/homeAnalista']);
+                                console.log('homeAnalista')
+                            }
+                        });
                     });
             })
             .catch((error: Error) => {
                 console.log('Erro Autenticação', error);
             });
-    });
-
     }
-     public autenticado(): boolean {
+
+    public autenticado(): boolean {
 
         if (this.tokenId === undefined && localStorage.getItem('idTokenInstagram') !== null) {
             this.tokenId = localStorage.getItem('idTokenInstagram');
@@ -75,7 +84,6 @@ export class AutenticacaoService {
         }
 
         return this.tokenId !== undefined;
-        
     }
 
     public sair(): void {

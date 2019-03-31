@@ -10,6 +10,5 @@ export const ROUTES: Routes = [
     { path: '', component: AcessoComponent },
     { path: 'homeCliente', component: HomeClienteComponent, canActivate: [ AutenticacaoGuard ] },
     { path: 'homeAnalista', component: HomeAnalistaComponent, canActivate: [ AutenticacaoGuard ] },
-
     { path: '**', component: AcessoComponent }
 ];

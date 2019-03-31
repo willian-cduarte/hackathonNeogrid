@@ -42,14 +42,19 @@ export class HomeClienteComponent implements OnInit {
       this.atualizaTickets();
     });
    }
-
-
-   public gravar():void{
-
+   public gravar():void {
 
     if (this.formulario.value.assunto != "" && this.formulario.value.descricao != "" && this.formulario.value.produto != "" ) {
 
-      let ticket: Ticket = new Ticket(999, this.formulario.value.assunto, 'Aberto', '02/04/2019', '' );
+      let ticket: Ticket = new Ticket(
+        999,
+        this.formulario.value.assunto,
+        'Aberto',
+        '02/04/2019',
+        '',
+        this.formulario.value.descricao,
+        this.formulario.value.produto);
+
       this.dbService.inserirTicket(ticket ,this.emailUsuario)
         .then((response: string) => {
 
@@ -59,14 +64,11 @@ export class HomeClienteComponent implements OnInit {
         });
 
     } else {
-      alert("Preencha os campos obrigatórios")
+      alert('Preencha os campos obrigatórios');
     }
 
-    
-     console.log(this.formulario);
-
+    // console.log(this.formulario);
    }
-
 
    public atualizaTickets(): void {
 

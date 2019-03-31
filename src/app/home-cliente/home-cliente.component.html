@@ -19,29 +19,35 @@
   <div *ngIf="itensTicket !== undefined">
       <div class="row">  
           <div class="col-sm-12 d-flex justify-content-center">                  
+              <div class="col-sm-2">                   
+                  <h5 class="modal-title">Produto</h5>
+              </div>
               <div class="col-sm-4">                   
                   <h5 class="modal-title">Assunto</h5>
               </div>
               <div class="col-sm-4">                   
                   <h5 class="modal-title"> Status </h5>
               </div>
-              <div class="col-sm-2">                   
+              <div class="col-sm-2"> 
                   <h5 class="modal-title"> Vencimento </h5>
               </div>
           </div>           
         </div>
               <div class="row" *ngFor="let publicacao of itensTicket">
                  <div class="col-sm-12 d-flex justify-content-center">                  
-                      <div class="col-sm-4">                   
-                            {{publicacao.assunto}}
-                      </div>
-                   
-                      <div class="col-sm-4">
-                            {{publicacao.status}}
-                      </div>                  
-                      <div class="col-sm-2">
-                            {{publicacao.dateSla}}
-                      </div>                 
+                    <div class="col-sm-2">
+                      {{publicacao.produto }}
+                    </div>                  
+                    <div class="col-sm-4">                   
+                          {{publicacao.assunto}}
+                    </div>
+                  
+                    <div class="col-sm-4">
+                          {{publicacao.status}}
+                    </div>                  
+                    <div class="col-sm-2">
+                          {{publicacao.dateSla}}
+                    </div>                 
                   </div>
               </div> 
               
@@ -73,13 +79,13 @@
                     <label for="message-text" class="col-form-label">Produto:</label>
                     <!-- <textarea class="form-control" id="message-text" formControlName="produto"></textarea> -->
                     <select class="form-control form-control-sm" id="message-text" formControlName="produto">
-                      <option>Selecione</option>
-                      <option>Fiscal</option>
-                      <option>EDI</option>
-                      <option>Visibilidade</option>
-                      <option>Replenishment(Planejamento)</option>
-                      <option>Trade Force</option>
-                      <option>Sourcing</option>
+                      <option value="">Selecione</option>
+                      <option value="fiscal">Fiscal</option>
+                      <option value="edi">EDI</option>
+                      <option value="visibilidade">Visibilidade</option>
+                      <option value="planning">Replenishment(Planejamento)</option>
+                      <option value="tradeForce">Trade Force</option>
+                      <option value="sourcing">Sourcing</option>
                     </select>                      
                   </div>
               

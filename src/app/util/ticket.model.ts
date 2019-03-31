@@ -5,6 +5,8 @@ export class Ticket {
         public assunto: string,
         public status: string,
         public dateSla: string,
-        public key: string
+        public key: string,
+        public descricao: string,
+        public produto: string
     ) { }
 }
