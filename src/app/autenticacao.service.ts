@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
+<<<<<<< HEAD
+import { Usuario } from './util/usuario.model';
+=======
+import { Usuario } from '././util/usuario.model';
+>>>>>>> ec1f32cae7c531985a27c30ca6b03a8fe47ed543
 import { UsuarioLogin } from './acesso/usuarioLogin.model';
 
 import * as firebase from 'firebase';
@@ -9,7 +14,7 @@ import * as firebase from 'firebase';
 export class AutenticacaoService {
 
     public tokenId: string;
-
+    public usuario: Usuario;
     constructor(private router: Router) {}
 
     public cadastrarUsuario(usuario: UsuarioLogin): Promise<any> {
@@ -44,6 +49,17 @@ export class AutenticacaoService {
                         this.tokenId = IdToken;
                         // Navegador
                         localStorage.setItem('idTokenInstagram', IdToken);
+                        firebase.database().ref(`usuario-detalhe/${btoa(email)}`)
+                        .once('value')
+                        .then((snapshot: any) => {
+                            console.log(snapshot)
+                            console.log(snapshot.usuario_detalhe)
+                            this.usuario = snapshot.usuario_detalhe;
+<<<<<<< HEAD
+=======
+                                
+>>>>>>> ec1f32cae7c531985a27c30ca6b03a8fe47ed543
+                        });
 
                         // Realiza a navegação ara a route 'home'
                         this.router.navigate(['/homeCliente']);
