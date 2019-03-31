@@ -1,12 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-<<<<<<< HEAD
-import { Usuario } from './acesso/usuario.model';
-import { Cliente } from './util/cliente.model';
-=======
+import { Usuario } from '././util/usuario.model';
 import { UsuarioLogin } from './acesso/usuarioLogin.model';
->>>>>>> f43c488ff14a7abaea2425eefdefc9664a440e1a
 
 import * as firebase from 'firebase';
 
@@ -14,7 +10,7 @@ import * as firebase from 'firebase';
 export class AutenticacaoService {
 
     public tokenId: string;
-    public usuario: Cliente;
+    public usuario: Usuario;
     constructor(private router: Router) {}
 
     public cadastrarUsuario(usuario: UsuarioLogin): Promise<any> {
@@ -54,7 +50,7 @@ export class AutenticacaoService {
                         .then((snapshot: any) => {
                             console.log(snapshot)
                             console.log(snapshot.usuario_detalhe)
-                            this.cliente = snapshot.usuario_detalhe;
+                            this.usuario = snapshot.usuario_detalhe;
                                 
                         });
 
