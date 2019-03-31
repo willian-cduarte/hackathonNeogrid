@@ -20,7 +20,8 @@ export class HomeAnalistaComponent implements OnInit {
 
   ngOnInit() {
 
-    this.atualizaTicketsSuporte();
+    // Implementação pendente
+    // this.atualizaTicketsSuporte();
   }
 
   public atualizaTicketsSuporte(): void{
