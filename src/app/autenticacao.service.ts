@@ -33,14 +33,18 @@ export class AutenticacaoService {
             });
     }
 
-    public autenticarUsuario(email: string, senha: string): void {
+    public autenticarUsuario(email: string, senha: string): Promise<boolean> {
 
-        firebase.auth().signInWithEmailAndPassword(email, senha)
-            .then((resposta: any) => {
+        return new Promise((resolve, reject) => {
 
-                // Token é retornado e armazenado no atributo tokenId da classe.
-                firebase.auth().currentUser.getIdToken()
-                    .then((IdToken: string) => {
+            let retornoAutenticacao: boolean;
+
+            firebase.auth().signInWithEmailAndPassword(email, senha)
+                .then((resposta: any) => {
+
+                    // Token é retornado e armazenado no atributo tokenId da classe.
+                    firebase.auth().currentUser.getIdToken()
+                        .then((IdToken: string) => {
 
                         this.tokenId = IdToken;
                         // Navegador
@@ -60,7 +64,9 @@ export class AutenticacaoService {
                                 this.router.navigate(['/homeAnalista']);
                                 console.log('homeAnalista')
 
-                            }                                
+                            } 
+			    retornoAutenticacao = true;
+                            resolve(retornoAutenticacao);                               
                         });
 
                         // Realiza a navegação ara a route 'home'
@@ -68,6 +74,8 @@ export class AutenticacaoService {
             })
             .catch((error: Error) => {
                 console.log('Erro Autenticação', error);
+		retornoAutenticacao = false;
+                resolve(retornoAutenticacao);
             });
     }
 
