@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { UsuarioLogin } from '../UsuarioLogin.model';
+import { UsuarioLogin } from '../usuarioLogin.model';
 
 import { AutenticacaoService } from '../../autenticacao.service';
 

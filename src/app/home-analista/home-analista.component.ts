@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BdService } from './../bd.service';
 
 @Component({
   selector: 'app-home-analista',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeAnalistaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private bdService: BdService) {
+    
+   }
 
   ngOnInit() {
+
+    this.atualizaTicketsSuporte();
   }
 
+  public atualizaTicketsSuporte():void{
+
+    this.bdService.consultaTicketSuporte();
+
+  }
 }

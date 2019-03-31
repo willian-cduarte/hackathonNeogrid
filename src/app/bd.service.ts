@@ -56,9 +56,26 @@ export class BdService {
                     })
                     resolve(ticketArray);
                 });
-        });
+        });        
+    }
 
-        
+    // EYMS
+    public consultaTicketSuporte(): any {
+
+        let usersCliente: string[];
+
+        firebase.database().ref(`ticket`)
+            .once('value')
+            .then((snapshot: any) => {
+                console.log('snapshot');
+                console.log(snapshot);
+
+                snapshot.forEach((childSnapshot: any) => {
+
+                    console.log('childSnapshot', childSnapshot.val());
+                });
+            })
+
     }
 
     // Excluir publicar
