@@ -2,8 +2,11 @@
   <div class="container">
     <div class="logo"></div>
     <div>
-      <!--<div class="add-post" data-toggle="modal" data-target="#exampleModal"></div>-->
-      <a href="#" (click)="sair()" style="margin-left: 25px">Sair</a>
+      <div>
+        <div class="add-post" data-toggle="modal" data-target="#exampleModal"></div>
+        <a href="#" (click)="sair()" style="margin-left: 25px">Sair</a>
+      </div>
+      <!-- <a href="#" (click)="sair()" style="margin-left: 25px">Sair</a> -->
     </div>
   </div>  
 </nav>
@@ -11,7 +14,8 @@
 
 <br /><br /><br />
 <div class="container">  
-    <button type="button" class="btn btn-primary">Novo Chamado</button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#incluirTicketModal">Novo Chamado</button>
+    <!-- <div class="add-post" data-toggle="modal" data-target="#exampleModal"></div> -->
   <div *ngIf="itensTicket !== undefined">
       <div class="row">  
           <div class="col-sm-12 d-flex justify-content-center">                  
@@ -44,3 +48,103 @@
   </div>  
 </div>
 
+
+
+<div class="modal fade" id="incluirTicketModal" tabindex="-1" role="dialog" aria-labelledby="incluirTicketModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form [formGroup]="formulario" (ngSubmit)="gravar()">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Incluir Novo Chamado</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>            
+            <div class="modal-body">                
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Assunto</label>
+                  <input type="text" class="form-control" id="recipient-name" formControlName="assunto"/>
+                </div>
+                <div class="form-group">
+                  <label for="message-text" class="col-form-label">Descrição:</label>
+                  <textarea class="form-control" id="message-text" formControlName="descricao"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="message-text" class="col-form-label">Produto:</label>
+                    <!-- <textarea class="form-control" id="message-text" formControlName="produto"></textarea> -->
+                    <select class="form-control form-control-sm" id="message-text" formControlName="produto">
+                      <option>Selecione</option>
+                      <option>Fiscal</option>
+                      <option>EDI</option>
+                      <option>Visibilidade</option>
+                      <option>Replenishment(Planejamento)</option>
+                      <option>Trade Force</option>
+                      <option>Sourcing</option>
+                    </select>                      
+                  </div>
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+              <button type="submit" class="btn btn-success">Salvar</button>
+            </div>          
+          </form>
+          </div>
+        
+  
+      <!-- <div class="modal-content" *ngIf="progressoPublicacao === 'pendente'">
+        <form [formGroup]="formulario" (ngSubmit)="publicar()">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Criar uma publicação</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <input
+              type="file"
+              placeholder="Arquivo Media"
+              class="form-control"
+              accept="image/*"
+              (change)="preparaImagemUpload($event)"
+            >
+            <input 
+              type="text"
+              placeholder="Título da publicação"
+              class="form-control"
+              formControlName="titulo"
+            >
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <button type="submit" class="btn btn-primary">Publicar</button>
+          </div>
+        </form>
+      </div> -->
+  
+      <!-- <div class="modal-content" *ngIf="progressoPublicacao === 'andamento'">
+        
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Publicação em andamento</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">        
+          Progresso: {{ porcentagemUpload }}%
+        </div>      
+      </div> -->
+  
+      <!-- <div class="modal-content" *ngIf="progressoPublicacao === 'concluido'">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Publicação realizada com sucesso</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Sua publicação foi realizada com sucesso!
+        </div>        
+      </div> -->
+    </div>
+  </div>
