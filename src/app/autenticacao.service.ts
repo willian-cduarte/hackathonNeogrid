@@ -10,71 +10,55 @@ import * as firebase from 'firebase';
 export class AutenticacaoService {
 
     public tokenId: string;
-    usuario: Usuario;
+    public usuario: Usuario;
     constructor(private router: Router) {}
 
-    public cadastrarUsuario(usuarioLogin: UsuarioLogin): Promise<any> {
+    public cadastrarUsuario(usuario: UsuarioLogin): Promise<any> {
 
         // console.log('Chegamos até o serviço', usuario);
 
-        return firebase.auth().createUserWithEmailAndPassword(usuarioLogin.email, usuarioLogin.senha)
+        return firebase.auth().createUserWithEmailAndPassword(usuario.email, usuario.senha)
             .then((resposta: any) => {
                 console.log(resposta);
 
                 // Remover a senha do atributo senha do obj usuário.
-                delete usuarioLogin.senha;
+                delete usuario.senha;
 
                 // Registrando dados complementares no path 'usuario_detalhe' com o 'nó' email na base64.
-                firebase.database().ref(`usuario_detalhe/${btoa(usuarioLogin.email)}`)
-                    .set( usuarioLogin );
+                firebase.database().ref(`usuario_detalhe/${btoa(usuario.email)}`)
+                    .set( usuario );
             })
             .catch((error: Error) => {
                 console.log('Error:', error);
             });
     }
 
-    public autenticarUsuario(email: string, senha: string): Promise<boolean> {
+    public autenticarUsuario(email: string, senha: string): void {
 
-        return new Promise((resolve, reject) => {
+        firebase.auth().signInWithEmailAndPassword(email, senha)
+            .then((resposta: any) => {
 
-            let retornoAutenticacao: boolean;
-
-            firebase.auth().signInWithEmailAndPassword(email, senha)
-                .then((resposta: any) => {
-
-                    // Token é retornado e armazenado no atributo tokenId da classe.
-                    firebase.auth().currentUser.getIdToken()
-                        .then((IdToken: string) => {
+                // Token é retornado e armazenado no atributo tokenId da classe.
+                firebase.auth().currentUser.getIdToken()
+                    .then((IdToken: string) => {
 
                         this.tokenId = IdToken;
                         // Navegador
                         localStorage.setItem('idTokenInstagram', IdToken);
-                        firebase.database().ref(`usuario_detalhe/${btoa(email)}`)
+                        firebase.database().ref(`usuario-detalhe/${btoa(email)}`)
                         .once('value')
                         .then((snapshot: any) => {
-
-                            let usuario = snapshot.val();
-                            console.log(usuario)
-
-                            if(usuario.cliente == true){
-                                this.router.navigate(['/homeCliente']);
-                                console.log('homeCliente')
-
-                            }else{
-                                this.router.navigate(['/homeAnalista']);
-                                console.log('homeAnalista')
-                            } 
-			    retornoAutenticacao = true;
-                            resolve(retornoAutenticacao);                               
+                            console.log(snapshot)
+                            console.log(snapshot.usuario_detalhe)
+                            this.usuario = snapshot.usuario_detalhe;
                         });
 
                         // Realiza a navegação ara a route 'home'
+                        this.router.navigate(['/homeCliente']);
                     });
             })
             .catch((error: Error) => {
                 console.log('Erro Autenticação', error);
-		retornoAutenticacao = false;
-                resolve(retornoAutenticacao);
             });
     }
 

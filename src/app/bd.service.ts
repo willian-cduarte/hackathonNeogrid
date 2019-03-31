@@ -12,20 +12,25 @@ export class BdService {
 
     constructor(private progressoService: ProgressoService) {}
 
-    public inserirTicket(ticket: Ticket, email: string): void {
+    public inserirTicket(ticket: Ticket, email: string): Promise<string> {
 
-        // Altenção inserido manual.
-        let ticketInsertTeste: Ticket = new Ticket(4, 'Mercadoria não rastreada', 'Aberto', '01/04/2019', '');
+        return new Promise((resolve, reject) => {
 
-        console.log('inserirTicket: ', email);
+            // Altenção inserido manual.
+            let ticketInsertTeste: Ticket = ticket;
 
-        // ALTERAR NÃO ESQUECER
-        firebase.database().ref(`ticket/${btoa(email)}`)
-            .push( { ticketInsertTeste } )
-            .then((resposta: any) => {
-                console.log('insert database');
-                console.log(resposta);
-            });
+            console.log('inserirTicket: ', email);
+
+            // ALTERAR NÃO ESQUECER
+            firebase.database().ref(`ticket/${btoa(email)}`)
+                .push( { ticketInsertTeste } )
+                .then((resposta: any) => {
+                    console.log('insert database');
+                    console.log(resposta);
+                    resolve('Ticket cadastrado');
+                });
+        });
+
     }
 
     public consultaTickets(email: string): Promise<Ticket[]> {
