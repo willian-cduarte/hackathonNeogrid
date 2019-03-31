@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BdService } from './../bd.service';
 
 import { AutenticacaoService } from './../autenticacao.service';
 
@@ -10,10 +11,13 @@ import { AutenticacaoService } from './../autenticacao.service';
 export class HomeAnalistaComponent implements OnInit {
 
   constructor(
-    private autenticacaoService: AutenticacaoService
+    private autenticacaoService: AutenticacaoService,
+    private bdService: BdService
   ) { }
 
   ngOnInit() {
+
+    this.atualizaTicketsSuporte();
   }
 
   public sair(): void {
