@@ -26,14 +26,11 @@ export class HomeClienteComponent implements OnInit {
     // Inser exemplo
     // this.dbService.inserirTicket(new Ticket (1, '', '' , ''));
 
-    this.dbService.consultaTickets('app@teste.com')
-      .then((resposta: Ticket[]) => {
-
-        this.ticketsCliente = resposta;
-
-        console.log('ticketsCliente', this.ticketsCliente);
-
-      });
+  //   this.dbService.consultaTickets('app@teste.com')
+  //     .then((resposta: Ticket[]) => {
+  //       this.ticketsCliente = resposta;
+  //       console.log('ticketsCliente', this.ticketsCliente);
+  //     });
    }
 
     
