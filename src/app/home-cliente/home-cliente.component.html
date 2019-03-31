@@ -12,8 +12,36 @@
 <br /><br /><br />
 <div class="container">
   <!--<app-publicacoes #publicacoes></app-publicacoes>-->
-   <app-tickets-cliente [tickets]=ticketsCliente></app-tickets-cliente>
+  <!--<div *ngIf="itensTicket !== undefined">
+    {{ itensTicket }}
+    <app-tickets-cliente [itensTicket]=itensTicket></app-tickets-cliente>
+  </div>
+  -->
+  <div *ngIf="itensTicket !== undefined">
 
+    <div class="row" *ngFor="let publicacao of itensTicket">
+        <div class="col d-flex justify-content-center">
+          
+          {{ publicacao.key }}
+          {{ publicacao.assunto }}
+          {{ publicacao.status }}
+          {{ publicacao.dateSla }}
+                
+
+          <!--<div class="card">
+            <div class="card-body">
+              <p class="card-text"><strong>{{ publicacao.assunto }}</strong></p>
+            </div>
+          </div>
+          -->
+        </div>
+    </div>
+    <!--
+    {{ itensTicket | json }}
+    
+    <p *ngFor="let item of itensTicket">{{ itensTicket.assunto }}</p>
+    -->
+  </div>  
 
   <!--Modal de inclusão deve ficar como último elemento e só será apresentado quando data-toggle for disparado na div 'add-post'-->
   <!--<app-incluir-publicacao (atualizarTimeLine)="atualizarTimeLine($event)" ></app-incluir-publicacao>-->
