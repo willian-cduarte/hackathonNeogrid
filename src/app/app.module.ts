@@ -20,6 +20,7 @@ import { PublicacoesComponent } from './home/publicacoes/publicacoes.component';
 import { IncluirPublicacaoComponent } from './home/incluir-publicacao/incluir-publicacao.component';
 import { HomeClienteComponent } from './home-cliente/home-cliente.component';
 import { TicketsClienteComponent } from './home-cliente/tickets-cliente/tickets-cliente.component';
+import { HomeAnalistaComponent } from './home-analista/home-analista.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { TicketsClienteComponent } from './home-cliente/tickets-cliente/tickets-
     PublicacoesComponent,
     IncluirPublicacaoComponent,
     HomeClienteComponent,
-    TicketsClienteComponent
+    TicketsClienteComponent,
+    HomeAnalistaComponent
   ],
   imports: [
     BrowserModule,
