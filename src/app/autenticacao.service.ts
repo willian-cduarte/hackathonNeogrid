@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Usuario } from './acesso/usuario.model';
+import { Cliente } from './util/cliente.model';
 
 import * as firebase from 'firebase';
 
@@ -9,7 +10,7 @@ import * as firebase from 'firebase';
 export class AutenticacaoService {
 
     public tokenId: string;
-
+    public usuario: Cliente;
     constructor(private router: Router) {}
 
     public cadastrarUsuario(usuario: Usuario): Promise<any> {
@@ -44,6 +45,14 @@ export class AutenticacaoService {
                         this.tokenId = IdToken;
                         // Navegador
                         localStorage.setItem('idTokenInstagram', IdToken);
+                        firebase.database().ref(`usuario-detalhe/${btoa(email)}`)
+                        .once('value')
+                        .then((snapshot: any) => {
+                            console.log(snapshot)
+                            console.log(snapshot.usuario_detalhe)
+                            this.cliente = snapshot.usuario_detalhe;
+                                
+                        });
 
                         // Realiza a navegação ara a route 'home'
                         this.router.navigate(['/homeCliente']);                       
