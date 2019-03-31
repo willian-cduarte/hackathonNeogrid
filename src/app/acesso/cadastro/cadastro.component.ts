@@ -38,8 +38,8 @@ export class CadastroComponent implements OnInit {
 
     const usuarioLogin: UsuarioLogin = new UsuarioLogin(
       this.formulario.value.email,
-      this.formulario.value.nomeCompleto,
-      this.formulario.value.nomeUsuario,
+      this.formulario.value.nome_completo,
+      this.formulario.value.nome_usuario,
       this.formulario.value.senha
     );
 
