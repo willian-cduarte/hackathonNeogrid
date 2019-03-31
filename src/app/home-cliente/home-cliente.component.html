@@ -16,33 +16,61 @@
     {{ itensTicket }}
     <app-tickets-cliente [itensTicket]=itensTicket></app-tickets-cliente>
   </div>
-  -->
+  --> 
+  
+
   <div *ngIf="itensTicket !== undefined">
+       
+          <table class="table justify-content-center">
+              <thead>
+                <tr>         
+                  <th>Assunto</th>
+                  <th>Status</th>
+                  <th>Vencimento</th>
+                </tr>
+              </thead>         
+            </table> 
 
-    <div class="row" *ngFor="let publicacao of itensTicket">
-        <div class="col d-flex justify-content-center">
+              <div class="row" *ngFor="let publicacao of itensTicket">
+                 <div class="col d-flex justify-content-center">  
+                  <!-- <tr>  -->
+                    <!-- <td>                 -->
+                      <div class="col-sm-4">                   
+                            {{publicacao.assunto}}
+                      </div> 
+                    <!-- </td>                 -->
+                    <!-- <td> -->
+                      <div class="col-sm-4">
+                            {{publicacao.status}}
+                      </div>
+                    <!-- </td> -->
+                    <!-- <td> -->
+                      <div class="col-sm-2">
+                            {{publicacao.dateSla}}
+                      </div>
+                    <!-- </td> -->
+                  <!-- </tr> -->
+                  </div>
+              </div>   
+              
+           
           
-          {{ publicacao.key }}
-          {{ publicacao.assunto }}
-          {{ publicacao.status }}
-          {{ publicacao.dateSla }}
-                
+  </div>  
+</div>
 
-          <!--<div class="card">
+ <!--<div class="card">
             <div class="card-body">
               <p class="card-text"><strong>{{ publicacao.assunto }}</strong></p>
             </div>
           </div>
           -->
-        </div>
-    </div>
-    <!--
+        <!-- </div> -->
+   <!--
     {{ itensTicket | json }}
     
     <p *ngFor="let item of itensTicket">{{ itensTicket.assunto }}</p>
     -->
-  </div>  
 
   <!--Modal de inclusão deve ficar como último elemento e só será apresentado quando data-toggle for disparado na div 'add-post'-->
   <!--<app-incluir-publicacao (atualizarTimeLine)="atualizarTimeLine($event)" ></app-incluir-publicacao>-->
-</div>
+<!-- </div> -->
