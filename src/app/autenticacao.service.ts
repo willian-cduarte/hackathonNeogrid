@@ -76,9 +76,10 @@ export class AutenticacaoService {
 		retornoAutenticacao = false;
                 resolve(retornoAutenticacao);
             });
-    }
+    });
 
-    public autenticado(): boolean {
+    }
+     public autenticado(): boolean {
 
         if (this.tokenId === undefined && localStorage.getItem('idTokenInstagram') !== null) {
             this.tokenId = localStorage.getItem('idTokenInstagram');
@@ -90,6 +91,7 @@ export class AutenticacaoService {
         }
 
         return this.tokenId !== undefined;
+        
     }
 
     public sair(): void {
